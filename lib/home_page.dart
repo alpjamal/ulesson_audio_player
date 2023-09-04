@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +15,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isPlaying = false;
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
+  late Timer timer;
 
   @override
   void initState() {
@@ -23,14 +26,13 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     });
     audioPlayer.onDurationChanged.listen((newDuration) {
-      setState(() {
-        duration = newDuration;
-      });
+      duration = newDuration;
     });
     audioPlayer.onPositionChanged.listen((newPosition) {
-      setState(() {
-        position = newPosition;
-      });
+      position = newPosition;
+    });
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {});
     });
   }
 
